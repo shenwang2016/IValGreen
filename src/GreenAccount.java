@@ -1,9 +1,10 @@
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * @authors Shen Wang, Yilun Hua
- * it's the user infomation build up
+ * it's the user information build up
  * it constructs a new user as well as
  * manage the user account
  */
@@ -11,7 +12,7 @@ import java.util.HashMap;
 public class GreenAccount {
 	
 	// change this number to customize
-	public static final MAX_NUM = 5;
+	public static final int MAX_NUM = 5;
 	
 	private String account_name;
 	// a boolean array list that marks the awards
@@ -56,12 +57,12 @@ public class GreenAccount {
 		// maybe use a different input method to get the user input
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Your new Password: (Numbers only)");
-		char c = scan.next();
+		String c = scan.next();
 		int i = 0;
 		ArrayList<Integer> new_password = new ArrayList<Integer>();
-		while (c != '\n') {
+		while (c != "\n") {
 			try {
-		        new_password[i] = Integer.parseInt(c);
+		        new_password.add(i, Integer.parseInt(c));
 		        i++;
 		        c = scan.next();
 		    } catch (NumberFormatException nfe) {
@@ -82,7 +83,7 @@ public class GreenAccount {
 		}
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Your new account name:");
-		this.account_name = scan.nextline();
+		this.account_name = scan.nextLine();
 		System.out.println("Successfully set account name");
 		return true;
 	}
@@ -92,6 +93,7 @@ public class GreenAccount {
 			System.out.println("Failed to verify");
 			return false;
 		}
+		return true;
 		
 	}
 	
