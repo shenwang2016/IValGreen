@@ -17,8 +17,8 @@ public class GreenAccount {
 	private String account_name;
 	// a boolean array list that marks the awards
 	private ArrayList<Boolean> awards;
-	// a int array list that marks the password
-	private ArrayList<Integer> password;
+	// a string that marks the password
+	private String password;
 	// a map that maps from questions to answers
 	private HashMap<String, String> security_questions;
 	
@@ -28,14 +28,14 @@ public class GreenAccount {
 	}
 	
 	// constructor with only name and password
-	public GreenAccount(String account_name, ArrayList<Integer> password) {
+	public GreenAccount(String account_name, String password) {
 		this.account_name = account_name;
 		this.password = password;
 	}
 	
 	// a fully profiled account constructor
 	public GreenAccount(String account_name,
-						ArrayList<Integer> password,
+						String password,
 						ArrayList<Boolean> awards,
 						HashMap<String, String> security_questions) {
 		this.account_name = account_name;
@@ -50,35 +50,26 @@ public class GreenAccount {
 	 */
 	public boolean setPassWord(boolean confirm_old) {
 		if (!confirm_old) {
-			System.out.println("Failed to verify");
 			return false;
 		}
 		// get the new password
 		// maybe use a different input method to get the user input
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Your new Password: (Numbers only)");
-		String c = scan.next();
-		int i = 0;
-		ArrayList<Integer> new_password = new ArrayList<Integer>();
-		while (c != "\n") {
-			try {
-		        new_password.add(i, Integer.parseInt(c));
-		        i++;
-		        c = scan.next();
-		    } catch (NumberFormatException nfe) {
-		        System.out.println("Not a number, enter again!");
-		        c = scan.next();
-		        continue;
-		    };
-		}
-		this.password = new_password;
+		System.out.println("Your new Password:");
+		this.password = getPassword();
 		System.out.println("Successfully set password");
 		return true;
 	}
 	
+	private String getPassword() {
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		String pass = scan.nextLine();
+		return pass;
+	}
+	
+	@SuppressWarnings("resource")
 	public boolean setAccountName(boolean confirm_identity) {
 		if (!confirm_identity) {
-			System.out.println("Failed to verify");
 			return false;
 		}
 		Scanner scan = new Scanner(System.in);
@@ -90,11 +81,44 @@ public class GreenAccount {
 	
 	public boolean setSecurityQuestions(boolean confirm_identity) {
 		if (!confirm_identity) {
-			System.out.println("Failed to verify");
 			return false;
 		}
+		if (this.security_questions == null) {
+			this.security_questions = new HashMap<String, String>();
+		}
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		for (int i = 1; i <= MAX_NUM; i++) {
+			System.out.println("Question #" + i);
+			String question = scan.nextLine();
+			System.out.println("Answer to this question");
+			String answer = scan.nextLine();
+			this.security_questions.put(question, answer);
+		}
 		return true;
-		
+	}
+	
+	@SuppressWarnings("resource")
+	public boolean verifyID() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter your password:");
+		String user_password = getPassword();
+		if (this.password.equals(user_password)) {
+			return true;
+		} else {
+			System.out.println("Wrong password, answer your security"
+					+ " questions");
+			for (String s : this.security_questions.keySet()) {
+				System.out.println(s);
+				System.out.println("Enter the answer:");
+				String a = scan.nextLine();
+				if (a.equals(this.security_questions.get(s))) {
+					return true;
+				}
+			}
+		}
+		System.out.println("Failed to verify");
+		return false;
 	}
 	
 	public String getAccountName() {
