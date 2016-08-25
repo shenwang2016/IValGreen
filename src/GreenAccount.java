@@ -68,13 +68,21 @@ public class GreenAccount {
 	}
 	
 	@SuppressWarnings("resource")
-	public boolean setAccountName(boolean confirm_identity) {
+	public boolean setAccountName(boolean confirm_identity, HashMap<String, GreenAccount> map) {
 		if (!confirm_identity) {
 			return false;
 		}
 		Scanner scan = new Scanner(System.in);
+		String name;
 		System.out.println("Your new account name:");
-		this.account_name = scan.nextLine();
+		while (true) {
+			name = scan.nextLine();
+			if (!isDupName(map, name)) {
+				break;
+			}
+			System.out.println("The name is taken, pick another one:");
+		}
+		this.account_name = name;
 		System.out.println("Successfully set account name");
 		return true;
 	}
@@ -119,6 +127,10 @@ public class GreenAccount {
 		}
 		System.out.println("Failed to verify");
 		return false;
+	}
+	
+	public boolean isDupName(HashMap<String, GreenAccount> map, String name) {
+		return map.containsKey(name);
 	}
 	
 	public String getAccountName() {
