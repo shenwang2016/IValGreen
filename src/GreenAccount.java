@@ -13,10 +13,11 @@ public class GreenAccount {
 	
 	// change this number to customize
 	public static final int MAX_NUM = 5;
+	public static final int AWARD_SIZE = 100;
 	
 	private String account_name;
 	// a boolean array list that marks the awards
-	private ArrayList<Boolean> awards;
+	private boolean[] awards = new boolean[AWARD_SIZE];
 	// a string that marks the password
 	private String password;
 	// a map that maps from questions to answers
@@ -36,7 +37,7 @@ public class GreenAccount {
 	// a fully profiled account constructor
 	public GreenAccount(String account_name,
 						String password,
-						ArrayList<Boolean> awards,
+						boolean[] awards,
 						HashMap<String, String> security_questions) {
 		this.account_name = account_name;
 		this.password = password;
@@ -137,7 +138,13 @@ public class GreenAccount {
 		return this.account_name;
 	}
 	
-	public ArrayList<Boolean> getAwards() {
-		return this.awards;
+	public ArrayList<String> getAwards(HashMap<Integer, String> map) {
+		ArrayList<String> awards_string = new ArrayList<String>();
+		for (int i = 0; i < AWARD_SIZE; i++) {
+			if (this.awards[i]) {
+				awards_string.add(map.get(i));
+			}
+		}
+		return awards_string;
 	}
 }
