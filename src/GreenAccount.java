@@ -3,10 +3,10 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 /**
+ *
+ * This class is a user information build up.
+ * It constructs a new user if not exists and manage the user account.
  * @authors Shen Wang, Yilun Hua
- * it's the user information build up
- * it constructs a new user as well as
- * manage the user account
  */
 
 public class GreenAccount {
