@@ -21,7 +21,8 @@ public class GreenAccount {
 	// a string that marks the password
 	private String password;
 	// a map that maps from questions to answers
-	private HashMap<String, String> security_questions;
+	private HashMap<String, String> security_questions
+	 = new HashMap<String, String>();
 	
 	// empty constructor
 	public GreenAccount() { 
