@@ -38,8 +38,8 @@ import java.util.Scanner;
 /**
  * @author Shen Wang, Yilun Hua
  * it's the center of the project
- * it records the users infomation as well as
- * some of the IValGreen Library infomation such
+ * it records the users information as well as
+ * some of the IValGreen Library information such
  * as awards list and calculation of each item's
  * weight etc.
  *
@@ -50,12 +50,12 @@ public class GreenLibrary {
 	// may be upgraded to some fancier representation such as
 	// a hashmap of int and another map that has a string mapped
 	// to a visual representation, such as a growing tree of each stage
-	private HashMap<Integer, String> award_system
-	= new HashMap<Integer, String>();
-	private HashMap<Integer, Double> item_list
-	= new HashMap<Integer, Double>();
-	private HashMap<String, Integer> item_indexer
-	= new HashMap<String, Integer>();
+	private HashMap<String, String> award_system
+	= new HashMap<String, String>();
+	private HashMap<String, String> item_list
+	= new HashMap<String, String>();
+	private HashMap<String, String> item_indexer
+	= new HashMap<String, String>();
 	
 	public GreenLibrary(String awards_file) {
 	}

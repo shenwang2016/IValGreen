@@ -84,6 +84,7 @@ public class GreenAccount {
 			}
 			System.out.println("The name is taken, pick another one:");
 		}
+		// save account_name into map latter
 		this.account_name = name;
 		System.out.println("Successfully set account name");
 		return true;
@@ -139,11 +140,11 @@ public class GreenAccount {
 		return this.account_name;
 	}
 	
-	public ArrayList<String> getAwards(HashMap<Integer, String> map) {
+	public ArrayList<String> getAwards(HashMap<String, String> map) {
 		ArrayList<String> awards_string = new ArrayList<String>();
 		for (int i = 0; i < AWARD_SIZE; i++) {
 			if (this.awards[i]) {
-				awards_string.add(map.get(i));
+				awards_string.add(map.get(Integer.toString(i)));
 			}
 		}
 		return awards_string;
