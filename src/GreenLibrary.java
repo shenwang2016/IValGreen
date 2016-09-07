@@ -44,6 +44,10 @@ import java.util.Scanner;
  * weight etc.
  *
  */
+
+// ACHTUNG!!! General frame of the project, many parts need to be
+// replaced! all suggestions welcomed. It's just a skeleton that gives
+// a general idea of what this thing needs to have
 public class GreenLibrary {
 	private HashMap<String, GreenAccount> user_info
 	= new HashMap<String, GreenAccount>();
@@ -57,7 +61,53 @@ public class GreenLibrary {
 	private HashMap<String, String> item_indexer
 	= new HashMap<String, String>();
 	
-	public GreenLibrary(String awards_file) {
+	public GreenLibrary() {
+		
+	}
+	
+	public void set_awards(String awards_file) {
+		try {
+			this.award_system = readFiles(awards_file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void set_item_to_category(String item_to_category) {
+		try {
+			this.item_indexer = readFiles(item_to_category);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void set_category_to_weight(String category_to_weight) {
+		try {
+			this.item_list = readFiles(category_to_weight);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	// need to parse each type into string accordingly
+	public void add_item(String item_name, int category, double weight) {
+		
+	}
+	
+	public void add_awards(String award_name, int award_index) {
+		
+	}
+	
+	// need to handle things more delicately
+	public void add_account(GreenAccount ga) {
+		if (ga == null) {
+			System.out.println("ERROR: account not exist");
+			return;
+		}
+		this.user_info.put(ga.getAccountName(), ga);
 	}
 	
 	// this method reads in a file that stores any kind of file described above
