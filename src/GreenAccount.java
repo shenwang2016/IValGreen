@@ -56,6 +56,7 @@ public class GreenAccount {
 			if (!verifyID()) {
 				return false;
 			}
+			this.login = true;
 		}
 		// get the new password
 		// maybe use a different input method to get the user input
@@ -78,6 +79,7 @@ public class GreenAccount {
 			if (!verifyID()) {
 				return false;
 			}
+			this.login = true;
 		}
 		Scanner scan = new Scanner(System.in);
 		String name;
@@ -100,6 +102,7 @@ public class GreenAccount {
 			if (!verifyID()) {
 				return false;
 			}
+			this.login = true;
 		}
 		if (this.security_questions == null) {
 			this.security_questions = new HashMap<String, String>();
