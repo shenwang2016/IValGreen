@@ -50,7 +50,7 @@ import java.util.Scanner;
 // a general idea of what this thing needs to have
 public class GreenLibrary {
 	
-	private String authorize_info;
+	// private String authorize_info;
 	
 	private HashMap<String, GreenAccount> user_info
 	= new HashMap<String, GreenAccount>();
@@ -65,10 +65,10 @@ public class GreenLibrary {
 	= new HashMap<String, String>();
 	
 	public GreenLibrary() {
-		authorize_info = "";
-		initialize_authority(authorize_info);
+		/*authorize_info = "";
+		initialize_authority(authorize_info);*/
 	}
-	
+	/*
 	// for security reason, exactly how to implement and check still in
 	// progress
 	private void initialize_authority(String a_i) {
@@ -78,11 +78,11 @@ public class GreenLibrary {
 	private boolean check_auth() {
 		return true;
 	}
-	
+	*/
 	public void set_awards(String awards_file) {
-		if (!check_auth()) {
+		/*if (!check_auth()) {
 			return;
-		}
+		}*/
 		try {
 			this.award_system = readFiles(awards_file);
 		} catch (FileNotFoundException e) {
@@ -92,9 +92,9 @@ public class GreenLibrary {
 	}
 	
 	public void set_item_to_category(String item_to_category) {
-		if (!check_auth()) {
+		/*if (!check_auth()) {
 			return;
-		}
+		}*/
 		try {
 			this.item_indexer = readFiles(item_to_category);
 		} catch (FileNotFoundException e) {
@@ -104,9 +104,9 @@ public class GreenLibrary {
 	}
 	
 	public void set_category_to_weight(String category_to_weight) {
-		if (!check_auth()) {
+		/*if (!check_auth()) {
 			return;
-		}
+		}*/
 		try {
 			this.item_list = readFiles(category_to_weight);
 		} catch (FileNotFoundException e) {
@@ -117,22 +117,22 @@ public class GreenLibrary {
 	
 	// need to parse each type into string accordingly
 	public void add_item(String item_name, int category, double weight) {
-		if (!check_auth()) {
+		/*if (!check_auth()) {
 			return;
-		}
+		}*/
 	}
 	
 	public void add_awards(String award_name, int award_index) {
-		if (!check_auth()) {
+		/*if (!check_auth()) {
 			return;
-		}
+		}*/
 	}
 	
 	// need to handle things more delicately
 	public void add_account(GreenAccount ga) {
-		if (!check_auth()) {
+		/*if (!check_auth()) {
 			return;
-		}
+		}*/
 		if (ga == null) {
 			System.out.println("ERROR: account not exist");
 			return;

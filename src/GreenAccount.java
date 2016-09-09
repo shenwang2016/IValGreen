@@ -15,6 +15,7 @@ public class GreenAccount {
 	public static final int MAX_NUM = 5;
 	public static final int AWARD_SIZE = 100;
 	
+	private boolean login = false;
 	private String account_name;
 	// a boolean array list that marks the awards
 	private boolean[] awards = new boolean[AWARD_SIZE];
@@ -50,9 +51,11 @@ public class GreenAccount {
 	 * In parameters: a boolean value that confirms the user is eligible to
 	 * change password (if false, return false)
 	 */
-	public boolean setPassWord(boolean confirm_old) {
-		if (!confirm_old) {
-			return false;
+	public boolean setPassWord() {
+		if (!this.login) {
+			if (!verifyID()) {
+				return false;
+			}
 		}
 		// get the new password
 		// maybe use a different input method to get the user input
@@ -70,9 +73,11 @@ public class GreenAccount {
 	}
 	
 	@SuppressWarnings("resource")
-	public boolean setAccountName(boolean confirm_identity, HashMap<String, GreenAccount> map) {
-		if (!confirm_identity) {
-			return false;
+	public boolean setAccountName(HashMap<String, GreenAccount> map) {
+		if (!this.login) {
+			if (!verifyID()) {
+				return false;
+			}
 		}
 		Scanner scan = new Scanner(System.in);
 		String name;
@@ -90,9 +95,11 @@ public class GreenAccount {
 		return true;
 	}
 	
-	public boolean setSecurityQuestions(boolean confirm_identity) {
-		if (!confirm_identity) {
-			return false;
+	public boolean setSecurityQuestions() {
+		if (!this.login) {
+			if (!verifyID()) {
+				return false;
+			}
 		}
 		if (this.security_questions == null) {
 			this.security_questions = new HashMap<String, String>();
@@ -107,6 +114,10 @@ public class GreenAccount {
 			this.security_questions.put(question, answer);
 		}
 		return true;
+	}
+	
+	public void log_in() {
+		this.login = verifyID();
 	}
 	
 	@SuppressWarnings("resource")
