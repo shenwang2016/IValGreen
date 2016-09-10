@@ -120,12 +120,16 @@ public class GreenLibrary {
 		/*if (!check_auth()) {
 			return;
 		}*/
+		String cat = Integer.toString(category);
+		this.item_indexer.put(item_name, cat);
+		this.item_list.put(cat, Double.toString(weight));
 	}
 	
 	public void add_awards(String award_name, int award_index) {
 		/*if (!check_auth()) {
 			return;
 		}*/
+		this.award_system.put(Integer.toString(award_index), award_name);
 	}
 	
 	// need to handle things more delicately
