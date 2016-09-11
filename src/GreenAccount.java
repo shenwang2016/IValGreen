@@ -42,9 +42,12 @@ public class GreenAccount {
 	}
 	public boolean checkLogin(String nameToCheck) {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Your new Password:");
+		System.out.println("Please enter your Password:");
 		String pass = scan.nextLine();
-		if(pass.equals(password)) return true;
+		if(pass.equals(password)) {
+			login = true;
+			return true;
+		}
 		return false;
 	}
 	// helper method to handle the case while user is not in login status
