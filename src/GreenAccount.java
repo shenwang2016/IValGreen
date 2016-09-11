@@ -18,6 +18,7 @@ public class GreenAccount {
 	public static final int AWARD_SIZE = 100;
 	private boolean login = false; // variable to trace the login status
 	private String account_name;
+	private int sum_contribution = 0;
 	private String password; // a string that marks the password
 	// a boolean array list that marks the awards
 	private boolean[] awards = new boolean[AWARD_SIZE];
@@ -150,6 +151,10 @@ public class GreenAccount {
 	
 	public String getAccountName() {
 		return this.account_name;
+	}
+	
+	public void increment_contribution(int increment) {
+		this.sum_contribution += increment;
 	}
 	
 	public ArrayList<String> getAwards(HashMap<String, String> map) {
