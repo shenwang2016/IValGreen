@@ -3,18 +3,17 @@
  */
 
 /**
- * @author
- * Shen Wang, Yilun Hua
+ * @author ylh96
  *
  */
-public class IValGreen_Main {
+public class IValGreen_Admin {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
