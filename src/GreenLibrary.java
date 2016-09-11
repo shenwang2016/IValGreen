@@ -45,98 +45,58 @@ import java.util.Scanner;
  *
  */
 
-// ACHTUNG!!! General frame of the project, many parts need to be
-// replaced! all suggestions welcomed. It's just a skeleton that gives
-// a general idea of what this thing needs to have
+// class manages to load award file, item file, and item index file
 public class GreenLibrary {
+	// map user name -> corresponding user account
+	private HashMap<String, GreenAccount> user_info = new HashMap<String, GreenAccount>();
+	// map award number -> award name
+	private HashMap<String, String> award_system = new HashMap<String, String>();
+	// map item index-> item weight
+	private HashMap<String, String> item_list = new HashMap<String, String>();
+	// map item name -> item index
+	private HashMap<String, String> item_indexer = new HashMap<String, String>();
 	
-	// private String authorize_info;
-	
-	private HashMap<String, GreenAccount> user_info
-	= new HashMap<String, GreenAccount>();
-	// may be upgraded to some fancier representation such as
-	// a hashmap of int and another map that has a string mapped
-	// to a visual representation, such as a growing tree of each stage
-	private HashMap<String, String> award_system
-	= new HashMap<String, String>();
-	private HashMap<String, String> item_list
-	= new HashMap<String, String>();
-	private HashMap<String, String> item_indexer
-	= new HashMap<String, String>();
-	
-	public GreenLibrary() {
-		/*authorize_info = "";
-		initialize_authority(authorize_info);*/
-	}
-	/*
-	// for security reason, exactly how to implement and check still in
-	// progress
-	private void initialize_authority(String a_i) {
-		
-	}
-	
-	private boolean check_auth() {
-		return true;
-	}
-	*/
+	// method to load file recording award system
 	public void set_awards(String awards_file) {
-		/*if (!check_auth()) {
-			return;
-		}*/
 		try {
 			this.award_system = readFiles(awards_file);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	// method to load item-index file
 	public void set_item_to_category(String item_to_category) {
-		/*if (!check_auth()) {
-			return;
-		}*/
 		try {
 			this.item_indexer = readFiles(item_to_category);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	// method to load item index-weight file
 	public void set_category_to_weight(String category_to_weight) {
-		/*if (!check_auth()) {
-			return;
-		}*/
 		try {
 			this.item_list = readFiles(category_to_weight);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	// need to parse each type into string accordingly
 	public void add_item(String item_name, int category, double weight) {
-		/*if (!check_auth()) {
-			return;
-		}*/
 		String cat = Integer.toString(category);
 		this.item_indexer.put(item_name, cat);
 		this.item_list.put(cat, Double.toString(weight));
 	}
 	
+	// add award name -> award index into award_system
 	public void add_awards(String award_name, int award_index) {
-		/*if (!check_auth()) {
-			return;
-		}*/
 		this.award_system.put(Integer.toString(award_index), award_name);
 	}
 	
-	// need to handle things more delicately
 	public void add_account(GreenAccount ga) {
-		/*if (!check_auth()) {
-			return;
-		}*/
+		// sanitary check
 		if (ga == null) {
 			System.out.println("ERROR: account not exist");
 			return;
@@ -146,11 +106,10 @@ public class GreenLibrary {
 	
 	// this method reads in a file that stores any kind of file described above
 	// it puts the first string (before ":") as the key and the second as the value
-	// into the hashmap (both key and value will be type string) and return
-	// the hashmap to the caller. And it's up to the caller to decide specific action
-	// for the hashmap returned
-	private HashMap<String, String> readFiles(String file_path)
-			throws FileNotFoundException {
+	// into the hash map (both key and value will be type string) and return
+	// the hash map to the caller. And it's up to the caller to decide specific action
+	// for the hash map returned
+	private HashMap<String, String> readFiles(String file_path) throws FileNotFoundException {
 		HashMap<String, String> map = new HashMap<String, String>();
 		File file = new File(file_path);
 		try {
@@ -164,7 +123,6 @@ public class GreenLibrary {
 			System.out.println("Invalid file path, reenter a file path");
 			return null;
 		}
-		Scanner scan = new Scanner(file);
 		return map;
 	}
 
