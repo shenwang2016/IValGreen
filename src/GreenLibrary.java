@@ -62,6 +62,11 @@ public class GreenLibrary {
 			this.award_system = readFiles(awards_file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			String name = reenterName();
+			if (name == null) {
+				return;
+			}
+			set_awards(name);
 		}
 	}
 	
@@ -71,6 +76,11 @@ public class GreenLibrary {
 			this.item_indexer = readFiles(item_to_category);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			String name = reenterName();
+			if (name == null) {
+				return;
+			}
+			set_item_to_category(name);
 		}
 	}
 	
@@ -80,7 +90,25 @@ public class GreenLibrary {
 			this.item_list = readFiles(category_to_weight);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			String name = reenterName();
+			if (name == null) {
+				return;
+			}
+			set_category_to_weight(name);
 		}
+	}
+	
+	public String reenterName() {
+		System.out.println("Would you like to enter another file?");
+		System.out.print("\"yes\" to reenter, \"no\" to quit");
+		Scanner scan = new Scanner(System.in);
+		String res = scan.nextLine();
+		if (res.toLowerCase().charAt(0) == 'n') {
+			scan.close();
+			return null;
+		}
+		scan.close();
+		return res;
 	}
 	
 	// need to parse each type into string accordingly
