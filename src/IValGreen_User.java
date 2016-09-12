@@ -71,12 +71,17 @@ public class IValGreen_User {
 	
 	// check whether user is logged in or not
 	public static boolean check_status(GreenLibrary gl) {
-		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		String username = scan.nextLine();
 		// try to pull green account from user_info
 		GreenAccount ga = gl.get_usr_info(username);
+		scan.close();
 		return ga.verifyID();
+	}
+	
+	public static boolean check_awards(GreenLibrary gl, GreenAccount ga) {
+		ga.getAwards(gl.getAwards());
+		return true;
 	}
 	
 	// map item -> num
