@@ -6,7 +6,7 @@ import java.util.Scanner;
  */
 
 /**
- * @author ylh96
+ * @author Shen Wang, Yilun Hua
  *
  */
 public class IValGreen_User {
@@ -19,29 +19,35 @@ public class IValGreen_User {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		GreenLibrary gl = new GreenLibrary();
+		GreenAccount user_ga = null;
+		HashMap<String, String> am = null;
+		HashMap<String, String> lm = null;
+		HashMap<String, String> im = null;
+		Scanner scan = new Scanner(System.in);
+		String username = scan.nextLine();
+		IValGreen_Admin.main(args, username, user_ga, am, lm, im);
+		
+		
+		scan.close();
 	}
 	
 	// check whether user name exists
 	// if not, ask user whether he is willing to create one
 	// if answer yes, create an account for user
 	// otherwise, do nothing
-	public static GreenAccount login_user(GreenLibrary gl) {
-		Scanner scan = new Scanner(System.in);
-		String username = scan.nextLine();
-		// try to pull green account from user_info
-		GreenAccount ga = gl.get_usr_info(username);
+	public static GreenAccount login_user(GreenAccount ga) {
 		// if account not exist
 		if (ga == null) {
 			System.out.println("Account not exist");
 			System.out.println("Would you like to create a new account?");
 			System.out.print("Enter \"yes\" or \"no\": ");
+			Scanner scan = new Scanner(System.in);
 			String answer = scan.nextLine();
 			// all account name will be set into lower case
 			answer = answer.toLowerCase();
 			// if user answer yes, create an account for him
 			if (answer.charAt(0) == 'y') {
-				ga = create_account(gl);
+				ga = create_account();
 				scan.close();
 				return ga;
 			} else { // user not willing to create account
@@ -51,12 +57,11 @@ public class IValGreen_User {
 		}
 		// set login status
 		ga.log_in();
-		scan.close();
 		return ga;
 	}
 	
 	// create green account for user
-	public static GreenAccount create_account(GreenLibrary gl) {
+	public static GreenAccount create_account() {
 		Scanner scan = new Scanner(System.in);
 		String username = scan.nextLine();
 		String password = scan.nextLine();
@@ -64,23 +69,26 @@ public class IValGreen_User {
 		// set security questions
 		ga.setSecurityQuestions();
 		// add user account into green library
-		gl.add_account(ga);
+		IValGreen_Admin.addAccount(ga);
 		scan.close();
 		return ga;
 	}
 	
 	// check whether user is logged in or not
-	public static boolean check_status(GreenLibrary gl) {
+	public static boolean check_status() {
 		Scanner scan = new Scanner(System.in);
 		String username = scan.nextLine();
 		// try to pull green account from user_info
-		GreenAccount ga = gl.get_usr_info(username);
+		GreenAccount ga = IValGreen_Admin.getGA(username);
 		scan.close();
+		if (ga == null) {
+			return false;
+		}
 		return ga.verifyID();
 	}
 	
-	public static boolean check_awards(GreenLibrary gl, GreenAccount ga) {
-		ga.getAwards(gl.getAwards());
+	public static boolean check_awards(GreenAccount ga) {
+		ga.getAwards(IValGreen_Admin.getAwardMap());
 		return true;
 	}
 	

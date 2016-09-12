@@ -18,7 +18,7 @@ public class GreenAccount {
 	public static final int AWARD_SIZE = 100;
 	private boolean login = false; // variable to trace the login status
 	private String account_name;
-	private int sum_contribution = 0;
+	private double sum_contribution = 0.0;
 	private String password; // a string that marks the password
 	// a boolean array list that marks the awards
 	private boolean[] awards = new boolean[AWARD_SIZE];
@@ -133,6 +133,7 @@ public class GreenAccount {
 		System.out.println("Enter your password:");
 		String user_password = getPassword();
 		if (this.password.equals(user_password)) {
+			scan.close();
 			return true;
 		} else {
 			System.out.println("Wrong password, answer your security"
@@ -142,6 +143,7 @@ public class GreenAccount {
 				System.out.println("Enter the answer:");
 				String a = scan.nextLine();
 				if (a.equals(this.security_questions.get(s))) {
+					scan.close();
 					return true;
 				}
 			}
@@ -159,7 +161,11 @@ public class GreenAccount {
 		return this.account_name;
 	}
 	
-	public void increment_contribution(int increment) {
+	public double get_sum() {
+		return this.sum_contribution;
+	}
+	
+	public void increment_contribution(double increment) {
 		this.sum_contribution += increment;
 	}
 	

@@ -118,6 +118,14 @@ public class GreenLibrary {
 		return this.award_system;
 	}
 	
+	public HashMap<String, String> getList() {
+		return this.item_list;
+	}
+	
+	public HashMap<String, String> getIndexer() {
+		return this.item_indexer;
+	}
+	
 	// this method reads in a file that stores any kind of file described above
 	// it puts the first string (before ":") as the key and the second as the value
 	// into the hash map (both key and value will be type string) and return
