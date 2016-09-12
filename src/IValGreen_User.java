@@ -26,7 +26,11 @@ public class IValGreen_User {
 		GreenAccount ga = gl.get_usr_info(username);
 		if (ga == null) {
 			System.out.println("Account not exist");
+			System.out.println("Would you like to create a new account?");
+			System.out.print("Enter \"yes\" or \"no\": ");
+			
 		}
+		scan.close();
 		return true;
 	}
 	
@@ -37,6 +41,7 @@ public class IValGreen_User {
 		GreenAccount ga = new GreenAccount(username, password, true);
 		ga.setSecurityQuestions();
 		gl.add_account(ga);
+		scan.close();
 		return true;
 	}
 	

@@ -127,6 +127,7 @@ public class GreenLibrary {
 				String[] parts = s.split(":");
 				map.put(parts[0], parts[1]);
 			}
+			scan.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Invalid file path, reenter a file path");
 			return null;

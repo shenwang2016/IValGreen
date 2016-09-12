@@ -75,14 +75,13 @@ public class GreenAccount {
 	
 	// helper method to prompt password from user
 	private String getPassword() {
-		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Your new Password:");
 		String pass = scan.nextLine();
+		scan.close();
 		return pass;
 	}
 	
-	@SuppressWarnings("resource")
 	public boolean setAccountName(HashMap<String, GreenAccount> map) {
 		boolean check = loginAndVerify();
         if (!check) return false;
@@ -101,6 +100,7 @@ public class GreenAccount {
 		// save account_name into map latter
 		this.account_name = name;
 		System.out.println("Successfully set account name");
+		scan.close();
 		return true;
 	}
 	
@@ -112,7 +112,6 @@ public class GreenAccount {
 		if (this.security_questions == null) {
 			this.security_questions = new HashMap<String, String>();
 		}
-		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		for (int i = 1; i <= MAX_NUM; i++) {
 			System.out.println("Question #" + i);
@@ -121,6 +120,7 @@ public class GreenAccount {
 			String answer = scan.nextLine();
 			this.security_questions.put(question, answer);
 		}
+		scan.close();
 		return true;
 	}
 	
@@ -128,7 +128,6 @@ public class GreenAccount {
 		this.login = verifyID();
 	}
 	
-	@SuppressWarnings("resource")
 	public boolean verifyID() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter your password:");
@@ -148,6 +147,7 @@ public class GreenAccount {
 			}
 		}
 		System.out.println("Failed to verify");
+		scan.close();
 		return false;
 	}
 	
