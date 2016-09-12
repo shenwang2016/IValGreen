@@ -104,6 +104,14 @@ public class GreenLibrary {
 		this.user_info.put(ga.getAccountName(), ga);
 	}
 	
+	public GreenAccount get_usr_info(String accountname) {
+		if (!this.user_info.containsKey(accountname)) {
+			return null;
+		} else {
+			return this.user_info.get(accountname);
+		}
+	}
+	
 	// this method reads in a file that stores any kind of file described above
 	// it puts the first string (before ":") as the key and the second as the value
 	// into the hash map (both key and value will be type string) and return

@@ -31,6 +31,12 @@ public class GreenAccount {
 		this.password = password;
 	}
 	
+	public GreenAccount(String account_name, String password, boolean login) {
+		this.account_name = account_name;
+		this.password = password;
+		this.login = true;
+	}
+	
 	// a fully profiled account constructor
 	public GreenAccount(String account_name,
 						String password,
