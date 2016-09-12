@@ -20,7 +20,7 @@ public class IValGreen_User {
 		GreenLibrary gl = new GreenLibrary();
 	}
 	
-	public static boolean login_user(GreenLibrary gl) {
+	public static GreenAccount login_user(GreenLibrary gl) {
 		Scanner scan = new Scanner(System.in);
 		String username = scan.nextLine();
 		GreenAccount ga = gl.get_usr_info(username);
@@ -31,20 +31,20 @@ public class IValGreen_User {
 			String answer = scan.nextLine();
 			answer = answer.toLowerCase();
 			if (answer.charAt(0) == 'y') {
-				create_account(gl);
+				ga = create_account(gl);
 				scan.close();
-				return true;
+				return ga;
 			} else {
 				scan.close();
-				return false;
+				return null;
 			}
 		}
 		ga.log_in();
 		scan.close();
-		return true;
+		return ga;
 	}
 	
-	public static boolean create_account(GreenLibrary gl) {
+	public static GreenAccount create_account(GreenLibrary gl) {
 		Scanner scan = new Scanner(System.in);
 		String username = scan.nextLine();
 		String password = scan.nextLine();
@@ -52,7 +52,7 @@ public class IValGreen_User {
 		ga.setSecurityQuestions();
 		gl.add_account(ga);
 		scan.close();
-		return true;
+		return ga;
 	}
 	
 	public static boolean check_status() { 
