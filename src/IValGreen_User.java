@@ -31,15 +31,11 @@ public class IValGreen_User {
 		return true;
 	}
 	
-	public static void add_contribution() {
+	public static void add_contribution(String item_name, int num) {
 		
 	}
 	
 	public static int calculate_contribution() {
-		return 0;
-	}
-	
-	private static int calculate_partial() {
 		return 0;
 	}
 
