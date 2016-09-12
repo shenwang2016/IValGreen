@@ -10,7 +10,9 @@ import java.util.Scanner;
  *
  */
 public class IValGreen_User {
+	// record total recycle contribution
     double trace_contribution = 0;
+    // map to record item-> num
     HashMap<String, Integer> green_record = new HashMap<String, Integer>();
 	/**
 	 * @param args
@@ -67,8 +69,13 @@ public class IValGreen_User {
 		return ga;
 	}
 	
-	public static boolean check_status() { 
-		return true;
+	public static boolean check_status(GreenLibrary gl) {
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		String username = scan.nextLine();
+		// try to pull green account from user_info
+		GreenAccount ga = gl.get_usr_info(username);
+		return ga.verifyID();
 	}
 	
 	public static void add_contribution(String item_name, int num) {
