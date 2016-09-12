@@ -95,6 +95,7 @@ public class GreenLibrary {
 		this.award_system.put(Integer.toString(award_index), award_name);
 	}
 	
+	// add account name -> green account into user_info
 	public void add_account(GreenAccount ga) {
 		// sanitary check
 		if (ga == null) {
@@ -104,6 +105,7 @@ public class GreenLibrary {
 		this.user_info.put(ga.getAccountName(), ga);
 	}
 	
+	// get green account with corresponding account name
 	public GreenAccount get_usr_info(String accountname) {
 		if (!this.user_info.containsKey(accountname)) {
 			return null;
@@ -124,6 +126,7 @@ public class GreenLibrary {
 			Scanner scan = new Scanner(file);
 			while (scan.hasNextLine()) {
 				String s = scan.nextLine();
+				// split with respect to file style
 				String[] parts = s.split(":");
 				map.put(parts[0], parts[1]);
 			}
