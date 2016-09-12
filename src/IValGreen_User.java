@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * 
  */
@@ -7,7 +9,8 @@
  *
  */
 public class IValGreen_User {
-
+    double trace_contribution = 0;
+    HashMap<String, Integer> green_record = new HashMap<String, Integer>();
 	/**
 	 * @param args
 	 */
