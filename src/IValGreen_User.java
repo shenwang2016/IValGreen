@@ -11,9 +11,9 @@ import java.util.Scanner;
  */
 public class IValGreen_User {
 	// record total recycle contribution
-    double trace_contribution = 0;
+    static int trace_contribution = 0;
     // map to record item-> num
-    HashMap<String, Integer> green_record = new HashMap<String, Integer>();
+    static HashMap<String, Integer> green_record = new HashMap<String, Integer>();
 	/**
 	 * @param args
 	 */
@@ -69,6 +69,7 @@ public class IValGreen_User {
 		return ga;
 	}
 	
+	// check whether user is logged in or not
 	public static boolean check_status(GreenLibrary gl) {
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
@@ -78,12 +79,23 @@ public class IValGreen_User {
 		return ga.verifyID();
 	}
 	
+	// map item -> num
+	// num should be > 0
 	public static void add_contribution(String item_name, int num) {
+		if(green_record.containsKey(item_name)) {
+			int temp_num = green_record.get(item_name);
+			temp_num += num;
+			green_record.put(item_name, temp_num);
+		} else {
+			green_record.put(item_name, num);
+		}
+		trace_contribution += num;
 		
 	}
 	
+	// return total number of contribution
 	public static int calculate_contribution() {
-		return 0;
+		return trace_contribution;
 	}
 
 }
