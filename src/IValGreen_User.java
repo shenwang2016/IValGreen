@@ -28,8 +28,18 @@ public class IValGreen_User {
 			System.out.println("Account not exist");
 			System.out.println("Would you like to create a new account?");
 			System.out.print("Enter \"yes\" or \"no\": ");
-			
+			String answer = scan.nextLine();
+			answer = answer.toLowerCase();
+			if (answer.charAt(0) == 'y') {
+				create_account(gl);
+				scan.close();
+				return true;
+			} else {
+				scan.close();
+				return false;
+			}
 		}
+		ga.log_in();
 		scan.close();
 		return true;
 	}
