@@ -99,6 +99,7 @@ public class GreenLibrary {
 	}
 	
 	public String reenterName() {
+		// ask user whether he is willing to reenter a file name
 		System.out.println("Would you like to enter another file?");
 		System.out.print("\"yes\" to reenter, \"no\" to quit");
 		Scanner scan = new Scanner(System.in);
@@ -107,6 +108,9 @@ public class GreenLibrary {
 			scan.close();
 			return null;
 		}
+		// prompt user to enter the full path of a file
+		System.out.println("Please enter the name of file");
+		res = scan.nextLine();
 		scan.close();
 		return res;
 	}
@@ -142,14 +146,17 @@ public class GreenLibrary {
 		}
 	}
 	
+	// return award_system
 	public HashMap<String, String> getAwards() {
 		return this.award_system;
 	}
 	
+	// return item_list
 	public HashMap<String, String> getList() {
 		return this.item_list;
 	}
 	
+	// return item_indexer
 	public HashMap<String, String> getIndexer() {
 		return this.item_indexer;
 	}

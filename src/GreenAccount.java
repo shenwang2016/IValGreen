@@ -82,8 +82,11 @@ public class GreenAccount {
 		return pass;
 	}
 	
+	// method to help user get an account name
 	public boolean setAccountName(HashMap<String, GreenAccount> map) {
+		// check login status first
 		boolean check = loginAndVerify();
+		// if not verified, user are not allowed to set account name
         if (!check) return false;
         this.login = true;
 		Scanner scan = new Scanner(System.in);
@@ -92,9 +95,11 @@ public class GreenAccount {
 		while (true) {
 			// prompt user to enter an account name until the entered name doesn't conflict with other existing name
 			name = scan.nextLine();
+			// if name is not a duplicate, then break out while loop
 			if (!isDupName(map, name)) {
 				break;
 			}
+			// prompt user to enter a new account name
 			System.out.println("The name is taken, pick another one:");
 		}
 		// save account_name into map latter
@@ -104,14 +109,18 @@ public class GreenAccount {
 		return true;
 	}
 	
+	// method to help user set security questions
 	public boolean setSecurityQuestions() {
+		// check login status first
 		boolean check = loginAndVerify();
+		// if not verified, user is not allowed to set security questions
         if (!check) return false;
         this.login = true;
 		// sanitary check
 		if (this.security_questions == null) {
 			this.security_questions = new HashMap<String, String>();
 		}
+		// prompt user to enter security questions and corresponding answer
 		Scanner scan = new Scanner(System.in);
 		for (int i = 1; i <= MAX_NUM; i++) {
 			System.out.println("Question #" + i);
@@ -124,51 +133,69 @@ public class GreenAccount {
 		return true;
 	}
 	
+	// set user's login status
 	public void log_in() {
 		this.login = verifyID();
 	}
 	
+	// method to verify userID
+	// 1) verify via user name and password
+	// 2) if first step failed, let user answer security questions.
+	// if user pass this step, then ID is verified
 	public boolean verifyID() {
 		Scanner scan = new Scanner(System.in);
+		// prompt user to enter password
 		System.out.println("Enter your password:");
 		String user_password = getPassword();
+		// if password match with the record
+		// return true
 		if (this.password.equals(user_password)) {
 			scan.close();
 			return true;
-		} else {
+		} else { // enter here means password match failed
 			System.out.println("Wrong password, answer your security"
 					+ " questions");
+			// prompt user to answer security questions
 			for (String s : this.security_questions.keySet()) {
+				// print questions
 				System.out.println(s);
+				// prompt user to enter answer
 				System.out.println("Enter the answer:");
 				String a = scan.nextLine();
+				// check whether answer match with records
 				if (a.equals(this.security_questions.get(s))) {
 					scan.close();
 					return true;
 				}
 			}
 		}
+		// reach here means verification failure
 		System.out.println("Failed to verify");
 		scan.close();
 		return false;
 	}
 	
+	// check whether we have duplicate account name
 	public boolean isDupName(HashMap<String, GreenAccount> map, String name) {
 		return map.containsKey(name);
 	}
 	
+	// get account name
 	public String getAccountName() {
 		return this.account_name;
 	}
 	
+	// get total contribution
 	public double get_sum() {
 		return this.sum_contribution;
 	}
 	
+	// increase the amount of total contribution
 	public void increment_contribution(double increment) {
 		this.sum_contribution += increment;
 	}
 	
+	// get a list of awards
 	public ArrayList<String> getAwards(HashMap<String, String> map) {
 		ArrayList<String> awards_string = new ArrayList<String>();
 		for (int i = 0; i < AWARD_SIZE; i++) {
