@@ -62,7 +62,9 @@ public class GreenLibrary {
 			this.award_system = readFiles(awards_file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			// prompt user to enter another filename
 			String name = reenterName();
+			// handle the case while name is null
 			if (name == null) {
 				return;
 			}
@@ -76,7 +78,9 @@ public class GreenLibrary {
 			this.item_indexer = readFiles(item_to_category);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			// prompt user to enter another file name
 			String name = reenterName();
+			// handle the case while name is null
 			if (name == null) {
 				return;
 			}
@@ -90,7 +94,9 @@ public class GreenLibrary {
 			this.item_list = readFiles(category_to_weight);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			// prompt user to enter another file name
 			String name = reenterName();
+			// handle the case while name is null
 			if (name == null) {
 				return;
 			}
@@ -104,10 +110,12 @@ public class GreenLibrary {
 		System.out.print("\"yes\" to reenter, \"no\" to quit");
 		Scanner scan = new Scanner(System.in);
 		String res = scan.nextLine();
+		// if user answer no, then do nothing
 		if (res.toLowerCase().charAt(0) == 'n') {
 			scan.close();
 			return null;
 		}
+		// user answer yes
 		// prompt user to enter the full path of a file
 		System.out.println("Please enter the name of file");
 		res = scan.nextLine();
@@ -118,12 +126,15 @@ public class GreenLibrary {
 	// need to parse each type into string accordingly
 	public void add_item(String item_name, int category, double weight) {
 		String cat = Integer.toString(category);
+		// add item_name -> index 
 		this.item_indexer.put(item_name, cat);
+		// add index -> weight
 		this.item_list.put(cat, Double.toString(weight));
 	}
 	
 	// add award name -> award index into award_system
 	public void add_awards(String award_name, int award_index) {
+		// add award num -> award name
 		this.award_system.put(Integer.toString(award_index), award_name);
 	}
 	
@@ -134,11 +145,14 @@ public class GreenLibrary {
 			System.out.println("ERROR: account not exist");
 			return;
 		}
+		// add account name ->  green account
 		this.user_info.put(ga.getAccountName(), ga);
 	}
 	
 	// get green account with corresponding account name
 	public GreenAccount get_usr_info(String accountname) {
+		// if user name not exist, then return null
+		// otherwise, return corresponding user account
 		if (!this.user_info.containsKey(accountname)) {
 			return null;
 		} else {
