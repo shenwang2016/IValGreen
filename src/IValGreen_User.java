@@ -17,16 +17,15 @@ public class IValGreen_User {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		GreenAccount user_ga = null;
 		// am is a map of award_system
-		HashMap<String, String> am = null;
+		HashMap<String, String> am = IValGreen_Admin.getAwardMap();
 		// lm is a map of item_list
-		HashMap<String, String> lm = null;
+		HashMap<String, String> lm = IValGreen_Admin.getItemList();
 		// im is a map of item_indexer
-		HashMap<String, String> im = null;
+		HashMap<String, String> im = IValGreen_Admin.getItemIndexer();
 		Scanner scan = new Scanner(System.in);
 		String username = scan.nextLine();
-		IValGreen_Admin.main(args, username, user_ga, am, lm, im);
+		GreenAccount user_ga = IValGreen_Admin.getGA(username);
 		
 		
 		scan.close();

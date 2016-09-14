@@ -52,7 +52,7 @@ public class IValGreen_Admin {
 	}
 	
 	// get item_indexer map
-	public static HashMap<String, String> getItemIndexer(GreenLibrary gl) {
+	public static HashMap<String, String> getItemIndexer() {
 		return gl.getIndexer();
 	}
 	
