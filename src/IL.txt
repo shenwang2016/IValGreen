@@ -1,0 +1,3 @@
+plastic-bottle:1
+bottle:1
+can:2

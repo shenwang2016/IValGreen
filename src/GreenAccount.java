@@ -206,6 +206,18 @@ public class GreenAccount {
 		return awards_string;
 	}
 	
+	public boolean[] getA() {
+		return this.awards;
+	}
+	
+	public String getPW() {
+		return this.password;
+	}
+	
+	public HashMap<String, String> getMP() {
+		return this.security_questions;
+	}
+	
 	public void getAll(String an, String pw, boolean[] aw, HashMap<String, String> mp) {
 		an = this.account_name;
 		pw = this.password;

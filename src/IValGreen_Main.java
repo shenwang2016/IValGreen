@@ -78,10 +78,10 @@ public class IValGreen_Main {
 				System.out.println("Invalid file path, reenter a file path");
 			}
 		}
+		outputData();
 		scan.close();
 	}
 	
-	@SuppressWarnings("null")
 	public static void outputData() {
 		HashMap<String, GreenAccount> mp = gl.getAllUser();
 		PrintWriter writer;
@@ -89,12 +89,13 @@ public class IValGreen_Main {
 			writer = new PrintWriter("data.txt", "UTF-8");
 			for (String s : mp.keySet()) {
 				GreenAccount ga = mp.get(s);
-				String an = null;
-				String pw = null;
-				boolean[] aw = null;
-				HashMap<String, String> mp2 = null;
-				ga.getAll(an, pw, aw, mp2);
-				writer.print(an + ":" + pw + ":" + ga.get_sum());
+				String an = ga.getAccountName();
+				String pw = ga.getPW();
+				boolean[] aw = ga.getA();
+				HashMap<String, String> mp2 = ga.getMP();
+				// ga.getAll(an, pw, aw, mp2);
+				double sum = ga.get_sum();
+				writer.print(an + ":" + pw + ":" + Double.toString(sum) + ":");
 				String aws = "";
 				String sqq = "";
 				String sqa = "";
