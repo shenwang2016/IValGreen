@@ -205,4 +205,11 @@ public class GreenAccount {
 		}
 		return awards_string;
 	}
+	
+	public void getAll(String an, String pw, boolean[] aw, HashMap<String, String> mp) {
+		an = this.account_name;
+		pw = this.password;
+		aw = this.awards;
+		mp = this.security_questions;
+	}
 }
