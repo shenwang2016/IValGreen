@@ -54,18 +54,29 @@ public class IValGreen_Main {
 					String[] parts = s.split(":");
 					if (parts.length == 6) {
 						String[] awards = parts[3].split("|");
+						System.out.println(awards[0].toString());
+						System.out.println(awards[1].toString());
+						System.out.println(awards[2].toString());
+						System.out.println(awards[3].toString());
+						System.out.println(awards[4].toString());
+						System.out.println(awards[5].toString());
 						boolean[] aw = new boolean[awards.length];
 						for (int i = 0; i < awards.length; i++) {
 							if (awards[i] == "1") {
 								aw[i] = true;
+								System.out.println("true");
 							} else {
 								aw[i] = false;
+								System.out.println("false");
 							}
 						}
 						HashMap<String, String> hm = new HashMap<String, String>();
 						String[] q = parts[4].split("|");
 						String[] a = parts[5].split("|");
+						System.out.println(q.length);
 						for (int i = 0; i < q.length; i++) {
+							System.out.println(q[i]);
+							System.out.println(a[i]);
 							hm.put(q[i], a[i]);
 						}
 						GreenAccount ga = new GreenAccount(parts[0], parts[1], aw, hm);
