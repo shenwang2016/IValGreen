@@ -54,12 +54,15 @@ public class IValGreen_Main {
 					String[] parts = s.split(":");
 					if (parts.length == 6) {
 						String[] awards = parts[3].split("|");
-						System.out.println(awards[0].toString());
-						System.out.println(awards[1].toString());
-						System.out.println(awards[2].toString());
-						System.out.println(awards[3].toString());
-						System.out.println(awards[4].toString());
-						System.out.println(awards[5].toString());
+						System.out.println(parts[0].toString());
+						System.out.println(parts[1].toString());
+						System.out.println(parts[2].toString());
+						System.out.println(parts[3].toString());
+						System.out.println(parts[4].toString());
+						System.out.println(parts[5].toString());
+						for (int i = 0; i < awards.length; i++) {
+							System.out.println(awards[i].toString());
+						}
 						boolean[] aw = new boolean[awards.length];
 						for (int i = 0; i < awards.length; i++) {
 							if (awards[i] == "1") {
