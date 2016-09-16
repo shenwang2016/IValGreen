@@ -52,34 +52,39 @@ public class IValGreen_Main {
 					String s = scanfile.nextLine();
 					// split with respect to file style
 					String[] parts = s.split(":");
+					// System.out.println(parts.length);
 					if (parts.length == 6) {
-						String[] awards = parts[3].split("|");
-						System.out.println(parts[0].toString());
-						System.out.println(parts[1].toString());
-						System.out.println(parts[2].toString());
-						System.out.println(parts[3].toString());
-						System.out.println(parts[4].toString());
-						System.out.println(parts[5].toString());
-						for (int i = 0; i < awards.length; i++) {
-							System.out.println(awards[i].toString());
-						}
+						String[] awards = parts[3].split("\\?");
+						// System.out.println(parts[0].toString());
+						// System.out.println(parts[1].toString());
+						// System.out.println(parts[2].toString());
+						// System.out.println(parts[3].toString());
+						// System.out.println(parts[4].toString());
+						// System.out.println(parts[5].toString());
+						/*
+						 * for (int i = 0; i < awards.length; i++) {
+						 *     System.out.println(awards[i].toString());
+						 * }
+						 */
 						boolean[] aw = new boolean[awards.length];
 						for (int i = 0; i < awards.length; i++) {
-							if (awards[i] == "1") {
+							// System.out.println(awards[i]);
+							int x = Integer.parseInt(awards[i]);
+							if (x == 1) {
 								aw[i] = true;
-								System.out.println("true");
+								// System.out.println("true");
 							} else {
 								aw[i] = false;
-								System.out.println("false");
+								// System.out.println("false");
 							}
 						}
 						HashMap<String, String> hm = new HashMap<String, String>();
-						String[] q = parts[4].split("|");
-						String[] a = parts[5].split("|");
-						System.out.println(q.length);
+						String[] q = parts[4].split("\\?");
+						String[] a = parts[5].split("\\?");
+						// System.out.println(q.length);
 						for (int i = 0; i < q.length; i++) {
-							System.out.println(q[i]);
-							System.out.println(a[i]);
+							// System.out.println(q[i]);
+							// System.out.println(a[i]);
 							hm.put(q[i], a[i]);
 						}
 						GreenAccount ga = new GreenAccount(parts[0], parts[1], aw, hm);
@@ -120,18 +125,18 @@ public class IValGreen_Main {
 				}
 				for (int i = 1; i < aw.length; i++) {
 					if (aw[i]) {
-						aws += "|1";
+						aws += "?1";
 					} else {
-						aws += "|0";
+						aws += "?0";
 					}
 				}
 				for (String a : mp2.keySet()) {
 					String b = mp2.get(a);
-					sqq += a + "|";
-					sqa += b + "|";
+					sqq += a + "?";
+					sqa += b + "?";
 				}
-				writer.println(aws + ":" + sqq.substring(0, sqq.length())
-				+ ":" + sqa.substring(0, sqa.length()));
+				writer.println(aws + ":" + sqq.substring(0, sqq.length() - 1)
+				+ ":" + sqa.substring(0, sqa.length() - 1));
 			}
 			writer.close();
 		} catch (FileNotFoundException e) {
